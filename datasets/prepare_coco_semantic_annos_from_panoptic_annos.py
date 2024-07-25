@@ -45,7 +45,7 @@ def separate_coco_semantic_from_panoptic(panoptic_json, panoptic_root, sem_seg_r
     id_map = {}  # map from category id to id in the output semantic annotation
     assert len(categories) <= 254
     for i, k in enumerate(categories):
-        id_map[k["id"]] = i
+        id_map[k["id"]] = i # all categories id
     # what is id = 0?
     # id_map[0] = 255
     print(id_map)
@@ -58,7 +58,7 @@ def separate_coco_semantic_from_panoptic(panoptic_json, panoptic_root, sem_seg_r
     def iter_annotations():
         for anno in obj["annotations"]:
             file_name = anno["file_name"]
-            segments = anno["segments_info"]
+            segments = anno["segments_info"]    # ？？
             input = os.path.join(panoptic_root, file_name)
             output = os.path.join(sem_seg_root, file_name)
             yield input, output, segments
